@@ -1,5 +1,6 @@
 #include "include/init.h"
 #include <curses.h>
+#include <string.h>
 
 void menu()
 {
@@ -21,8 +22,19 @@ char get_coice()
 
 void get_nickname(user* usr) {
     char name[16];
+    loop:
     printw("enter your nickname: ");
-    getnstr(name, 15);
+    getnstr(name, sizeof(name));
     if (strlen(name) == 0) return;
+    for(int i = 0; i<sizeof(name); i++){
+      if(name[i] == ' ')
+      {
+        printw("the nickname has characters that are not allowed! \n");
+        memset(name, 0, sizeof(name));
+        goto loop;    
+      }
+    }
+  
+    
     strcpy(usr->nickname, name);
 }

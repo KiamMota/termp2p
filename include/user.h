@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "buffer.h"
 
 #ifndef _USER_H
@@ -12,6 +11,8 @@ typedef struct{
   const char* ip;
   int port;
   const char* chat_connected;
+  int cursory;
+  int cursorx;
 } user;
 
 user* init_user();

@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include "user.h"
 #include "buffer.h"
 
@@ -11,4 +9,5 @@
 
 void write(user* usr);
 void send(user* usr);
+void interpreter(user* usr);
 #endif

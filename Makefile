@@ -12,8 +12,7 @@ $(BUILD)/%.o: $(DOTC)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 tg: $(OBJ)
-	$(shell export LD_LIBRARY_PATH=$(pwd)/extern/pdcurses/x11:$LD_LIBRARY_PATH)
-	$(CC) $(CFLAGS) -I$(INC) -L$(PD) -o $@ $^ -lXCurses
+	LD_LIBRARY_PATH=$(pwd)/extern/pdcurses/x11:$$LD_LIBRARY_PATH $(CC) $(CFLAGS) -I$(INC) -L$(PD) -o $@ $^ -lXCurses
 
 .PHONY: clean
 	rm -r $(BUILD)/*

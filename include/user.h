@@ -7,7 +7,7 @@
 #define USER_BUFFER 255
 
 typedef struct{
-  char* nickame;
+  char* nickname;
   char* buffer;
   const char* ip;
   int port;

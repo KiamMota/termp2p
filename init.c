@@ -1,10 +1,11 @@
 #include "include/init.h"
+#include <curses.h>
 
 void menu()
 {
-  printf("welcome to termp2p \n");
-  printf("[1] - join in room \n");
-  printf("[2] - create a room\n");
+  printw("welcome to termp2p \n");
+  printw("[1] - join in room \n");
+  printw("[2] - create a room\n");
 }
 
 char get_coice()
@@ -18,13 +19,10 @@ char get_coice()
   return choice;
 }
 
-void get_nickname(user* usr)
-{
-  char name[14];
-  printf("enter your nickname: ");
-  fgets(name, sizeof(name), stdin);
-  if(strcmp(name, "") == 0) return;
-  name[strcspn(name, "\n")] = '\0';
-  strcpy(usr->nickame, name);
+void get_nickname(user* usr) {
+    char name[16];
+    printw("enter your nickname: ");
+    getnstr(name, 15);
+    if (strlen(name) == 0) return;
+    strcpy(usr->nickname, name);
 }
-

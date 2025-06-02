@@ -1,17 +1,23 @@
 #include "include/text.h"
-#include <stdio.h>
+#include "curses.h"
+#include <string.h>
 
-void write(user* usr)
+char commands[48][48] = 
 {
-  if (strcmp(usr->nickame, "no nick") != 0) {
-      printf("[%s]: ", usr->nickame);
-      fgets(usr->buffer, USER_BUFFER, stdin);
-  }else{
-    printf("unvalid nick!");
-  }
+"drop-table", "no-way", "meh"
+};
+
+void write(user* usr) {
+    printw("[%s]: ", usr->nickname);
+    getnstr(usr->buffer, USER_BUFFER - 1);    
 }
 
 void send(user* usr)
 {
-  printf("[%s]: %s \n", usr->nickame, usr->buffer);
+  int x,y;
+  getyx(stdscr, y, x);
+  printw("[%s]: %s \n", usr->nickname, usr->buffer);
+  move(y, 0); clrtoeol();
+  memset(usr->buffer, 0, USER_BUFFER);
 }
+

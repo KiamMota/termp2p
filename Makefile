@@ -2,17 +2,18 @@ CC = gcc
 CFLAGS = -Wall
 BUILD = build
 INC=include 
+PD=extern/pdcurses/x11
 tg=termp2p
-EXTERN=extern
 
 SRC = $(wildcard *.c)
-OBJ = $(patsubst $(DOTC)/%.o, $(BUILD)/%.c, $(SRC))
+OBJ = $(patsubst ./%.c, $(BUILD)/%.o, $(SRC))
 
 $(BUILD)/%.o: $(DOTC)/%.c
-	$(CC) $(CFLAGS) -c -I$(INC) -I$(EXTERN)/pdcurses $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 tg: $(OBJ)
-	$(CC) $(CFLAGS) -L$(EXTERN)/pdcurses -o $@ $^ -lXCurses
+	$(shell export LD_LIBRARY_PATH=$(pwd)/extern/pdcurses/x11:$LD_LIBRARY_PATH)
+	$(CC) $(CFLAGS) -I$(INC) -L$(PD) -o $@ $^ -lXCurses
 
 .PHONY: clean
 	rm -r $(BUILD)/*

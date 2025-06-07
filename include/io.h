@@ -1,7 +1,8 @@
 #include "user.h"
 #include "buffer.h"
-#ifndef _TEXT_H_
-#define _TEXT_H_
+
+#ifndef _IO_H_
+#define _IO_H_
 
 #define save_cursor() printf("\033[s")
 #define restore_cursor() printf("\033[u")

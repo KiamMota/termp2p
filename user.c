@@ -1,5 +1,4 @@
 #include "include/user.h"
-#include <curses.h>
 #include <stdlib.h>
 
 user* init_user(){
@@ -10,8 +9,17 @@ user* init_user(){
   usr->ip = "no ip";
   usr->port = 0;
   usr->chat_connected = "no chat";
-  getyx(stdscr, usr->cursory, usr->cursorx);
   return usr;  
+}
+
+
+
+int destroy_user(user** user)
+{
+  free(*user);
+  *user = NULL;
+  if(!*user) return 1;
+  return 0;
 }
 
 
